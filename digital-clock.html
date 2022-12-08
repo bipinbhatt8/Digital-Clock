@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        body{
+            background: #E4E4E4;
+        }
+        .container{
+            width:900px;
+            height:300px;
+            color: white;
+            background-color: black;
+            border: 20px solid white;
+            border-radius: 20px;
+            margin: auto;
+            margin-top: 100px;
+            text-align: center;
+
+        }
+        .time{
+            font-size: 200px;
+        }
+        #am-pm{
+            font-size: 50px;
+        }
+        #day-month{
+            font-size: 30px;
+            margin-top: -10px;
+        }
+        @media only screen and (max-width: 1000px) {
+            .container{
+                width: 600px;
+                height:200px;
+            }
+            .time{
+                font-size: 120px;
+            }
+        }
+        @media only screen and (max-width: 768px) {
+            .container{
+                width: 380px;
+                height:100px;
+            }
+            .time{
+                font-size: 60px;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+       <span class="time"></span> <span id="am-pm"></span>
+       <p id="day-month"></p>
+
+    </div>
+</body>
+<script>
+   setInterval(function(){
+
+
+        // time ko lagi
+        let Time= new Date();
+        let hour= Time.getHours();
+        let minute=Time.getMinutes();
+        let second=Time.getSeconds();
+        let newTime=document.getElementsByClassName("time")[0]
+        newTime.innerHTML=hour+":"+minute+":"+second;
+
+
+        // am pm ko lagi
+        let am =document.getElementById("am-pm");
+        if(Number.parseInt(hour)>=12){
+            am.innerHTML="PM";
+        }
+        else{am.innerHTML="AM";}
+
+        //date ko lagi
+        let newdaymonth = Time.toString().substring(0, 10);
+        let dayMonth = document.getElementById("day-month");
+        dayMonth.innerHTML=newdaymonth;
+        },1000)
+</script>
+</html>
